@@ -1,11 +1,11 @@
-import pygame as pg
 import random
 import sys
+import pygame as pg
 from pygame.locals import *
 
 # makes it so you can stretch and squash display i think
 fps = 15
-window_width = 640
+window_width = 480
 window_height = 480
 cellsize = 20
 
@@ -180,6 +180,7 @@ def showGameOverScreen():
     pg.display.update()
     pg.time.wait(500)
     checkForKeyPress()  # clear key presses in queue
+
 
     while True:
         if checkForKeyPress():
