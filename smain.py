@@ -5,8 +5,8 @@ from pygame.locals import *
 
 # makes it so you can stretch and squash display i think
 fps = 15
-window_width = 640
-window_height = 480
+window_width = 600
+window_height = 600
 cellsize = 20
 
 assert window_height % cellsize == 0, "Window width must be a multiple of cell size."
@@ -59,7 +59,7 @@ def rungame():
 
     apple = getRandomLocation()
 
-    while True:  # game loop
+    while True:  # the game loop
         for event in pg.event.get():  # event handling loop
             if event.type == QUIT:
                 terminate()
@@ -75,8 +75,14 @@ def rungame():
                 elif event.key == K_ESCAPE:
                     terminate()
 
+                    
+                    # snake's head = [x:15, y:61]
+                    # snake's body = [x:14, y:59],[x:14 y:60],[x:15, y:60]
+                    # cellwidth = 600
+                    # cellHeight = 600
+
         #check if worm hits itself or an edge
-        if snekCoords[head]['x'] == -1 or snekCoords[head]['x'] == cellwidth or snekCoords[head]['x'] == cellheight:
+        if snekCoords[head]['x'] == -1 or snekCoords[head]['x'] == cellwidth or snekCoords[head]['y'] == cellheight or snekCoords[head]['y'] == -1:
             return  # game over
         for snekBody in snekCoords[1:]:
             if snekBody['x'] == snekCoords[head]['x'] and snekBody['y'] == snekCoords[head]['y']:
@@ -86,8 +92,6 @@ def rungame():
         if snekCoords[head]['x'] == apple['x'] and snekCoords[head]['y'] == apple['y']:
             # don't remove tail seg
             apple = getRandomLocation()  # set new apple
-        else:
-            del snekCoords[-1]  # remove worm tail segment
 
         # add segment in the direction that worm 'moves'
         if direction == up:
