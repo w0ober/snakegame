@@ -59,7 +59,7 @@ def rungame():
 
     apple = getRandomLocation()
 
-    while True:  # the game loop
+    while True:  #our game loop
         for event in pg.event.get():  # event handling loop
             if event.type == QUIT:
                 terminate()
